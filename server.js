@@ -1,19 +1,10 @@
-var httpProxy = require('http-proxy');
+var engine = require('engine');
+var config = require('conf_parser').parse(__dirname + '/nginx.conf');
 
-var CFG = {
-  host: '0.0.0.0',
-  port: 3000
-};
+engine.init(config);
 
-httpProxy.createServer(function(req, res, proxy) {
+engine.on('request', function(req, res) {
+  console.log(req.url);
+});
 
-  //do some stuff
-
-  proxy.proxyRequest(req, res, {
-    host: 'localhost',
-    port: 80
-  });
-
-}).listen(CFG.port, CFG.host);
-
-console.log('Listening on ' + CFG.host + ':' + CFG.port);
+engine.start();
