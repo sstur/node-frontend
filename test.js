@@ -1,4 +1,4 @@
-var http = require('./lib/http');
+var http = require('./lib/http_multi');
 var exec = require('child_process').exec;
 
 var server = http.createServer(function (req, res) {
