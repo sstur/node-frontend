@@ -2,7 +2,9 @@ var http = require('./lib/http_multi');
 var exec = require('child_process').exec;
 
 var server = http.createServer(function (req, res) {
-  console.log('Request: ' + JSON.stringify(req.serverAddr) + ' ' + req.url);
+  var connAddr = req.connection.address()
+    , host = (req.headers.host) ? req.headers.host.split(':')[0] : connAddr.address;
+  console.log('Request: http://' + host + ':' + connAddr.port + req.url);
   res.writeHead(200, {'Content-Type': 'text/plain'});
   res.end(JSON.stringify(req.headers));
 });
