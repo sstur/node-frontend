@@ -5,7 +5,9 @@ require('patch');
 var util = require('util')
   , config = require('conf-parser').parse(__dirname + '/nginx.conf');
 
-//console.log(util.inspect(config, false, null));
+//var test = config.getFirstChild('http').getFirstChild('server').getProperty('default_type');
+//console.dir(test);
+////console.log(util.inspect(config.getChild('http').toJSON(), false, null));
 //process.exit();
 
 var engine = require('engine').create(config);
