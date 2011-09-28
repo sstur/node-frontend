@@ -13,12 +13,11 @@ var util = require('util')
 var engine = require('engine').create(config);
 
 engine.on('request', function(req, res) {
-  if (req.url.match(/^[^?]*\/favicon\.ico(\?.*)?$/i)) {
+  if (~req.url.pathname.toLowerCase().indexOf('/favicon.ico')) {
     res.die(404, 'Not Found');
   } else {
-    var connAddr = req.connection.address();
-    var host = (req.headers.host) ? req.headers.host.split(':')[0] : connAddr.address;
-    console.log('Request: http://' + host + ':' + connAddr.port + req.url);
+    var serverAddr = req.connection.address();
+    console.log('Request: http://' + req.headers.host.split(':')[0] + ':' + serverAddr.port + req.url.href);
   }
 });
 
