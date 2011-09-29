@@ -1,0 +1,7 @@
+proxy_pass directive
+conf-file passed in argv
+request validation (security-checks)
+core variables ($uri, $host, $http_HEADER, $args, $remote_addr, $request_method)
+rewrite directive
+logging
+listen on control port (http api) to reload config
