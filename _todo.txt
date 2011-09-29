@@ -4,4 +4,9 @@ request validation (security-checks)
 core variables ($uri, $host, $http_HEADER, $args, $remote_addr, $request_method)
 rewrite directive
 logging
+gzip directive
 listen on control port (http api) to reload config
+
+
+add support for: process.env.NODE_ENV == 'production'
+
