@@ -4,7 +4,8 @@
  * Functionally equivalent and backwards-compatible with Nginx
  * Strong focus on Performance, Stability and Security
  * Uses Nginx-compatible config files
- * Low-level, modular and extensible
+ * Websockets Support
+ * Modular and extensible
 
 This is a work in progress and is not feature-complete and largely un-tested. The goal is to reach alpha with a set of
 core features in the near future and after sufficient testing begin battle-testing in a simple production environment.
