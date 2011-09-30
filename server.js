@@ -3,21 +3,37 @@ require.paths.unshift(__dirname + '/lib');
 require('patch');
 
 var util = require('util')
-  , config = require('conf-parser').parse(__dirname + '/nginx.conf');
+  , path = require('path')
+  , configParser = require('conf-parser');
 
-//var test = config.getFirstChild('http').getFirstChild('server').getProperty('default_type');
-//console.dir(test);
-////console.log(util.inspect(config.getChild('http').toJSON(), false, null));
-//process.exit();
+var args = process.argv.slice(2);
+var configFile = (args[0] && args[0].match(/\.conf$/i)) ? args.shift() : 'nginx.conf';
+if (configFile.charAt(0) != '/') {
+  configFile = path.join(__dirname, configFile);
+}
+console.log(configFile);
+
+
+var controlPort = (args[0] && args[0].match(/^\d+$/)) ? args.shift() : '1081';
+if (args[0] && args[0].match(/^(status|reload|stop)$/)) {
+  //TODO: contact existing instance listening on controlPort
+  process.exit();
+} else {
+  //TODO: start listening on controlPort
+}
+
+var config = configParser.parse(configFile);
+config.data('base_path', path.dirname(configFile));
+config.data('ctrl_port', path.dirname(controlPort));
 
 var engine = require('engine').create(config);
 
 engine.on('request', function(req, res) {
-  if (~req.parsedURL.pathname.toLowerCase().indexOf('/favicon.ico')) {
+  if (~req.pathname.toLowerCase().indexOf('/favicon.ico')) {
     res.die(404, 'Not Found');
   } else {
     var serverAddr = req.connection.address();
-    console.log('Request: http://' + req.headers.host.split(':')[0] + ':' + serverAddr.port + req.url);
+    console.log('Request: http://' + req.requestedHost.split(':')[0] + ':' + serverAddr.port + req.url);
   }
 });
 

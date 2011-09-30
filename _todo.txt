@@ -8,16 +8,16 @@ listen on control port (http api) to reload config
 error_page directive
 
 handle Location header rewrites during proxy-pass
+default_type uses conf.default() if not specified
 fix `location` searching based on: http://wiki.nginx.org/HttpCoreModule#location
   location [=|~|~*|^~|@] /uri/
-default_type uses conf.default() if not specified
 handle `server_name` directive with wildcard at end, regex or empty host-header
 add `listen ssl`
 case where both `proxy_pass` and `root` directives are present
-`try_files` directive with rewrite fallback
 add support for: process.env.NODE_ENV == 'production'
 
 OTHER DIRECTIVES
+try_files (with rewrite fallback)
 if_modified_since (defaults to exact)
 internal (loc block can only be used if rewrite has taken place)
 keepalive_disable (default: msie6, safari)
