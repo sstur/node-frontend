@@ -23,6 +23,7 @@ if (args[0] && args[0].match(/^(status|reload|stop)$/)) {
 }
 
 var config = configParser.parse(configFile);
+config.data('production', (process.env.NODE_ENV == 'production'));
 config.data('base_path', path.dirname(configFile));
 config.data('ctrl_port', path.dirname(controlPort));
 
