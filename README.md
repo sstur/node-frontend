@@ -1,4 +1,6 @@
-#Reverse Proxy and Static File Server
+#Reverse Proxy and HTTP Server
+
+##Status: Incomplete
 
 ##Design Goals
  * Functionally equivalent and backwards-compatible with Nginx
@@ -18,7 +20,7 @@ core features in the near future and after sufficient testing begin battle-testi
  * Built-in upload module with progress reporting
  * REST-ful API for re-loading config and getting real-time stats
 
-##Even More Features (future modules)
+##Future Modules
  * In-memory resource caching (Memcached module)
    * Configurable for certain content-types, within file-size constraints
    * Prioritization based on rules and resource popularity
